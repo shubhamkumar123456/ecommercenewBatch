@@ -32,7 +32,7 @@ const Signup = () => {
         <h1 style={{backgroundClip:'text'}} className='lg:text-4xl md:text-start text-center md:text-2xl text-transparent font-bold lg:w-[500px] md:w-[350px] bg-linear-to-r from-[goldenrod] to-[black]'> Exclusive Offers Await Create Your Account Today!</h1>
       </div>
     
-      <form action="" className=' lg:w-[400px] md:w-[300px] h-max p-5 bg-[white] shadow-lg rounded-2xl flex gap-3 flex-col'>
+      <form  action="" className=' signupForm lg:w-[400px] md:w-[300px] h-max p-5 bg-transparent shadow-lg rounded-2xl flex gap-3 flex-col'>
           {/* <img src="https://www.citypng.com/public/uploads/preview/black-shopify-ecommerce-logo-701751694791307pvl6xyyal3.png"  className='w-24  m-auto' alt="" /> */}
           <h3 className='text-center lg:text-xl md:text-md font-semibold'>Ecommerce Signup</h3>
         <label htmlFor="">Name</label>
