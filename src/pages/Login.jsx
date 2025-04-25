@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
+ 
 
   return (
     <div className='w-full flex md:flex-row flex-col  px-5 justify-center gap-4 items-center h-full bg-[url(https://cdn.pixabay.com/photo/2018/09/21/07/07/e-commerce-3692440_1280.jpg)]  bg-center bg-cover'>
