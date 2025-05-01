@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Navbar from './components/Navbar'
 import Cart from './pages/Cart'
+import ViewDetails from './pages/ViewDetails'
 
 function App() {
  
@@ -13,15 +14,18 @@ function App() {
   return (
     <>
      <BrowserRouter>
+     <div className='mb-[65px]'>
      <Navbar/>
-        <main className='h-[calc(100vh-65px)] mt-[65px]'>
+     </div>
+ 
         <Routes>
               <Route path='/'  element = {<Home/>}/>
               <Route path='/login'  element = {<Login/>}/>
               <Route path='/register'  element = {<Signup/>}/>
               <Route path='/cart'  element = {<Cart/>}/>
+              <Route path='/view'  element = {<ViewDetails/>}/>
         </Routes>
-        </main>
+    
      </BrowserRouter>
 
     </>

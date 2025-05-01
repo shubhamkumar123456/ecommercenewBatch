@@ -1,11 +1,13 @@
 import React, { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Signup = () => {
 
   let nameRef = useRef()
   let emailRef = useRef()
   let passwordRef = useRef()
+
+  let navigate = useNavigate()
 
 
 
@@ -35,7 +37,7 @@ const Signup = () => {
       dataBase.push(obj)
       console.log(dataBase)
       console.log(obj)
-
+      navigate('/login')
       localStorage.setItem('EcomSignup', JSON.stringify(dataBase))
     }
 

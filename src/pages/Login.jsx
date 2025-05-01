@@ -1,11 +1,58 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
+ 
+
+
+  let emailRef = useRef();
+  let passwordRef = useRef();
+
+  let navigate = useNavigate()
 
   let arr = JSON.parse(localStorage.getItem('EcomSignup')) || [] ;
 
   console.log(arr)
+
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+
+    let obj = {
+      email:emailRef.current.value,
+      password:passwordRef.current.value
+    }
+    console.log(obj)
+
+    // regex for string matching
+
+
+    let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-z]{2,}$/
+    let test = emailPattern.test(obj.email)
+    if(!test){
+      return alert('provide proper email')
+    }
+    // let checkProperEmail  = obj.email.includes('@') //true , false
+   
+
+    let find = arr.find((ele)=>ele.email=== obj.email);
+    console.log(find)  // arr ka object
+    if(find){
+      if(find.password === obj.password){
+        navigate('/')
+        // console.log('login successfully')
+      }
+      else  {
+        // console.log('wrong password')
+        alert('wrong password')
+      }
+    }
+    else{
+      navigate('/register')
+      return alert('user not found please signup')
+    }
+
+  }
 
 
   return (
@@ -20,10 +67,10 @@ const Login = () => {
           <h3 className='text-center lg:text-xl md:text-md font-semibold'>Ecommerce Login</h3>
       
         <label htmlFor="">Email</label>
-        <input className='rounded-md outline-none border border-yellow-300 px-4 py-2' type="email"  placeholder='enter your email'/>
+        <input ref={emailRef} className='rounded-md outline-none border border-yellow-300 px-4 py-2' type="email"  placeholder='enter your email'/>
         <label htmlFor="">Password</label>
-        <input className='rounded-md outline-none border border-yellow-300 px-4 py-2' type="password" placeholder='enter your password'/>
-        <button className='bg-green-500 hover:bg-green-700 cursor-pointer hover:text-white py-2 rounded-md'>Signup</button>
+        <input ref={passwordRef} className='rounded-md outline-none border border-yellow-300 px-4 py-2' type="password" placeholder='enter your password'/>
+        <button onClick={handleSubmit} className='bg-green-500 hover:bg-green-700 cursor-pointer hover:text-white py-2 rounded-md'>Login</button>
 
         <p className='text-center '>Don't have an account? <Link className='text-blue-700' to={'/register'}>register</Link></p>
       </form>
