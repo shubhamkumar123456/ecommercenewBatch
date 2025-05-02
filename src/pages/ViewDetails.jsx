@@ -1,7 +1,18 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { IoMdStar } from "react-icons/io";
+import { IoMdStarHalf } from "react-icons/io";
+
+import Accordion from '@mui/material/Accordion';
+
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const ViewDetails = () => {
+
+
 
     const [selectedImage, setselectedImage] = useState('');
     console.log("selectedImage=" , selectedImage)
@@ -17,26 +28,81 @@ const ViewDetails = () => {
 
     const handleImage = (url , i)=>{
         console.log(url)
-        setselectedImage(url)
         console.log(i)
+        setselectedImage(url)
     }
+
+
 
   return (
     <div>
-        h1llo
-      <div className='w-full h-[70vh] bg-green-400'>
-        <div className='w-1/2 relative flex h-full bg-black'>
-            <img className="w-full max-w-[320px] m-auto h-[70%]" src={selectedImage?selectedImage : product.thumbnail} alt="" />
+      
+      <div className='w-[90%] m-auto mt-[100px] p-8 rounded-xl flex lg:flex-row flex-col lg:h-[70vh] h-max viewDetailsCard'>
+        <div className='lg:w-1/2 min-w-[450px] w-full m-auto relative flex h-full '>
+            <img className="w-full max-w-[320px] m-auto h-[70%]" src={selectedImage || product.thumbnail} alt="" />
             <div className='flex h-full  flex-col absolute left-0 top-0 gap-2'>
                 {
                     product.images.map((url, i)=>{
-                        return <img onClick={()=>handleImage(url , i)} className='border border-[#989898] rounded-md cursor-pointer w-full h-full max-w-[100px] max-h-[100px]' key={url} src={url} alt="" />
+                        return <img onClick={()=>handleImage(url , i)} className='border border-[#989898] rounded-md cursor-pointer w-full h-full max-w-[70px] max-h-[70px]' key={url} src={url} alt="" />
                     })
                 }
             </div>
         </div>
-        <div></div>
+        <div className='flex flex-col gap-2'>
+          <h1 className='font-semibold text-xl'>{product.title}</h1>
+          <p> <b>Price:</b> {product.price}</p>
+          <p className='flex items-center'> <b>rating:</b> 
+            {/* <IoMdStar color='yellow'/>   <IoMdStarHalf color='yellow'/> */}
+
+                  {
+                  Array(Math.floor(product.rating)).fill('0').map((ele , i)=>{
+                    return <IoMdStar color='yellow'/> 
+
+                  })
+                  }
+                 { Math.ceil(product.rating) - product.rating > 0 && <IoMdStarHalf color='yellow'/>}
+           </p>
+          <p> <b>Category:</b> {product.category}</p>
+          <p> <b>Brand:</b> {product.brand}</p>
+          <p> <b>Discount:</b> {product.discountPercentage}</p>
+          <p> <b>Minimum Order Quantity:</b> {product.minimumOrderQuantity}</p>
+          <p> <b>Warranty:</b> {product.warrantyInformation}</p>
+          <p> <b>Return:</b> {product.returnPolicy}</p>
+          <p> <b>Description:</b> {product.description}</p>
+          
+      <Accordion >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+          <Typography component="span">more</Typography>
+        </AccordionSummary>
+        <AccordionDetails className='z-50 relative'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          malesuada lacus ex, sit amet blandit leo lobortis eget.
+        </AccordionDetails>
+      </Accordion>
+        </div>
       </div>
+
+      <div  className='w-[90%] my-2 mx-auto bg-white'>
+        <h1 className='text-2xl viewDetailsCard my-2'>Reviews</h1>
+             <div className='flex justify-center gap-3'>
+             {
+                product.reviews.map((item , i )=>{
+                  return <div className='viewDetailsCard p-5 w-max my-2'>
+                    <p>Name: {item.reviewerName}</p>
+                    <p>Email: {item.reviewerEmail}</p>
+                    <p>Date: {item.date}</p>
+                    <p>Rating: {item.rating}</p>
+                    <p>Comment: {item.comment}</p>
+                  </div>
+                })
+              }
+             </div>
+      </div>
+
     </div>
   )
 }
