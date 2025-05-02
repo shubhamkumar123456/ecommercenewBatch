@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { IoMdStar } from "react-icons/io";
 import { IoMdStarHalf } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 
 import Accordion from '@mui/material/Accordion';
 
@@ -48,7 +49,7 @@ const ViewDetails = () => {
                 }
             </div>
         </div>
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-2 h-max'>
           <h1 className='font-semibold text-xl'>{product.title}</h1>
           <p> <b>Price:</b> {product.price}</p>
           <p className='flex items-center'> <b>rating:</b> 
@@ -70,11 +71,11 @@ const ViewDetails = () => {
           <p> <b>Return:</b> {product.returnPolicy}</p>
           <p> <b>Description:</b> {product.description}</p>
           
-      <Accordion >
+      <Accordion className='' id ="accordion" >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<IoIosArrowDown color='white'  />}
           aria-controls="panel1-content"
-          id="panel1-header"
+         
         >
           <Typography component="span">more</Typography>
         </AccordionSummary>
@@ -86,12 +87,18 @@ const ViewDetails = () => {
         </div>
       </div>
 
-      <div  className='w-[90%] my-2 mx-auto bg-white'>
-        <h1 className='text-2xl viewDetailsCard my-2'>Reviews</h1>
-             <div className='flex justify-center gap-3'>
+             
+      <div  className='w-[90%] my-2 mx-auto  viewDetailsCard'>
+      <Accordion>
+                  <AccordionSummary>
+                  Reviews
+                  </AccordionSummary>
+
+                  <AccordionDetails>
+                  <div className='flex justify-center gap-3'>
              {
                 product.reviews.map((item , i )=>{
-                  return <div className='viewDetailsCard p-5 w-max my-2'>
+                  return <div className=' p-5 border rounded w-max my-2'>
                     <p>Name: {item.reviewerName}</p>
                     <p>Email: {item.reviewerEmail}</p>
                     <p>Date: {item.date}</p>
@@ -101,6 +108,9 @@ const ViewDetails = () => {
                 })
               }
              </div>
+                  </AccordionDetails>
+          </Accordion>    
+           
       </div>
 
     </div>

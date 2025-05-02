@@ -38,3 +38,12 @@ body{
     backdrop-filter: blur(5px);
     color: white;
 }
+
+#accordion.css-1808mag-MuiPaper-root-MuiAccordion-root{
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+}
+#accordian .MuiSvgIcon-root{
+    background-color: white;
+}
