@@ -7,9 +7,32 @@ import Signup from './pages/Signup'
 import Navbar from './components/Navbar'
 import Cart from './pages/Cart'
 import ViewDetails from './pages/ViewDetails'
+import { useState } from 'react'
 
 function App() {
- 
+
+  const [cartArr, setcartArr] = useState([]); //[{}]
+  console.log(cartArr)
+
+    function getData(ans){
+      console.log(ans)  //obj {}
+      ans.quantity = 1;
+
+      let find = cartArr.find((ele)=>ele.id === ans.id);  // ele , undefined
+
+      if(find){
+        return alert('item already exists');
+      }
+
+
+
+      let copyArr = [...cartArr]
+      copyArr.push(ans)
+      setcartArr(copyArr)
+      alert('item added successfully')
+
+      // setcartArr([...cartArr , ans])  // [{},{bed}]
+    }
 
   return (
     <>
@@ -19,10 +42,10 @@ function App() {
      </div>
  
         <Routes>
-              <Route path='/'  element = {<Home/>}/>
+              <Route path='/'  element = {<Home getData={getData}/>}/>
               <Route path='/login'  element = {<Login/>}/>
               <Route path='/register'  element = {<Signup/>}/>
-              <Route path='/cart'  element = {<Cart/>}/>
+              <Route path='/cart'  element = {<Cart cartArr={cartArr}/>}/>
               <Route path='/view'  element = {<ViewDetails/>}/>
         </Routes>
     
