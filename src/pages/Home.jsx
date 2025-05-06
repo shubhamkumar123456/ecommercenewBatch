@@ -28,7 +28,7 @@ const Home = (props) => {
 
   return (
     <div  id='homePage' className=' px-3  '>
-      <h1>This is Home page</h1>
+      {/* <h1>This is Home page</h1> */}
 
       <div className='grid w-[90%] mx-auto gap-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1'>
       {

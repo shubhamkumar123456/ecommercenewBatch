@@ -12,6 +12,7 @@ import { useState } from 'react'
 function App() {
 
   const [cartArr, setcartArr] = useState([]); //[{}]
+
   console.log(cartArr)
 
     function getData(ans){
@@ -38,14 +39,14 @@ function App() {
     <>
      <BrowserRouter>
      <div className='mb-[65px]'>
-     <Navbar/>
+     <Navbar cartArr={cartArr}/>
      </div>
  
         <Routes>
               <Route path='/'  element = {<Home getData={getData}/>}/>
               <Route path='/login'  element = {<Login/>}/>
               <Route path='/register'  element = {<Signup/>}/>
-              <Route path='/cart'  element = {<Cart cartArr={cartArr}/>}/>
+              <Route path='/cart'  element = {<Cart cartArr={cartArr} setcartArr={setcartArr}  x = {{arr:cartArr , update:setcartArr}}/>}/>
               <Route path='/view'  element = {<ViewDetails/>}/>
         </Routes>
     
