@@ -120,3 +120,25 @@ const ViewDetails = () => {
 }
 
 export default ViewDetails
+
+
+// import React from 'react'
+// import { useLocation } from 'react-router-dom'
+
+// const ViewDetails = () => {
+
+
+//   // location hook apko ek object deta hai jisme multiple keys and value hoti hai jisme apka path and state bhi hota hai
+//   let location = useLocation()
+//   console.log(location)
+//   console.log(location.state)
+
+//   return (
+//     <div>
+//       <h1>This is view page</h1>
+//     </div>
+//   )
+// }
+
+// export default ViewDetails
+

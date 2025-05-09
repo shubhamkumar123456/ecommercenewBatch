@@ -20,7 +20,7 @@
 body{
     background-attachment: fixed;
     height: max-content;
-    background-image: url(https://media.istockphoto.com/id/1125657284/photo/keyboard-cubes-wooden.jpg?s=2048x2048&w=is&k=20&c=rpZ1i3wjiUdxn0eIyuKd1uYSLgTVWJqgCNg8wFj5oCQ=);
+    background-image: url(https://plus.unsplash.com/premium_photo-1676070095335-751e5ad358ff?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aGQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -30,6 +30,10 @@ body{
     background-color: rgb(255, 255, 255,0.4);
     /* background-color: rgb(173, 255, 47,0.4); */
     backdrop-filter: blur(5px);
+    color: black;
+}
+
+.homeCard button{
     color: white;
 }
 
