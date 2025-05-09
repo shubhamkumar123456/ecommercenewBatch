@@ -96,17 +96,17 @@ const Home = () => {
     <div>
         <SliderComponent/>
         <div className='my-4'>
-          <h1>Smartphones</h1>
+          <h1 className='bg-[rgb(0,0,0,0.5)] text-white text-2xl font-semibold p-3'>Smartphones</h1>
           <CategorySliders smartPhones = {smartPhones}/>
         </div>
         <div className='my-4'>
-          <h1>Laptops</h1>
+          <h1 className='bg-[rgb(0,0,0,0.5)] text-white text-2xl font-semibold p-3'>Laptops</h1>
         <CategorySliders smartPhones = {laptops}/>
 
         </div>
 
         <div className='my-4'>
-          <h1>Watches</h1>
+          <h1 className='bg-[rgb(0,0,0,0.5)] text-white text-2xl font-semibold p-3'>Smartphones</h1>
         <CategorySliders smartPhones = {watches}/>
         </div>
       <div className='grid grid-cols-4 gap-2 w-[90%] m-auto'>
