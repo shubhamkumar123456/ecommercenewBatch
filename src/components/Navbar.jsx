@@ -2,12 +2,22 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CiMenuFries } from "react-icons/ci";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [showSidebar, setshowSidebar] = useState(false);
+
+  const handleSerchChanger = (e)=>{
+    // console.log(e.target)  // tag
+    console.log(e.target.value) //s
+    props.getNavValue(e.target.value)
+  }
   return (
    <div className='fixed top-0 z-50 right-0 left-0'>
-     <div className='w-full relative  bg-[rgb(0,0,0,0.6)] text-white rounded-lg  backdrop-blur-3xl px-10 justify-between items-center flex h-[65px] '>
+     <div className='w-full relative  bg-[rgb(0,0,0,0.8)] text-white rounded-lg  backdrop-blur-3xl px-10 justify-between items-center flex h-[65px] '>
         <h1 className='text-2xl text-white font-semibold'>E-commerce</h1>
+
+        <form action="">
+          <input type="text" onChange={handleSerchChanger} placeholder='search...' className='outline-none border px-4 py-2 rounded-xl' />
+        </form>
 
         <ul className='lg:flex hidden gap-10 items-center'>
             <li><Link to={'/'}>Home</Link> </li>

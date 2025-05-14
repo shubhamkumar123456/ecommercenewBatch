@@ -22,20 +22,49 @@
         // }
         // console.log(x)
 
-        function xyz(){
-             x = 10 //
-        }
-        xyz()
+        // function xyz(){
+        //      x = 10 //
+        // }
+        // xyz()
 
-        console.log(x) //can access 10 outside the function real global
-        x=5
+        // console.log(x) //can access 10 outside the function real global
+        // x=5
 
 
-        function abc(){
-            x=6
-        }
+        // function abc(){
+        //     x=6
+        // }
 
-        console.log(x)
+        // console.log(x)
+
+
+        let arr = [
+            {
+                title:"one",
+                price:455
+            },
+            {
+                title:"two",
+                price:455
+            },
+            {
+                title:"three",
+                price:455
+            },
+            {
+                title:"four",
+                price:455
+            },
+            {
+                title:"five",
+                price:455
+            },
+        ]
+
+        let search = 'one'
+                // {title:"five",price:455} , two , T
+        let ans = arr.filter( (ele)=>ele.title.includes(search) )    //[ ]
+        console.log(ans)
     </script>
 </body>
 </html>

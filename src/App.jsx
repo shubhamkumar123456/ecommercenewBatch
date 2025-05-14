@@ -16,15 +16,27 @@ import "slick-carousel/slick/slick-theme.css";
 function App() {
 
 
+  function getCartItem(ans){
+    console.log(ans)
+  }
+
+
+  const [searchValue, setsearchValue] = useState('');
+
+  function getNavValue(ans){
+    console.log(ans) //s
+    setsearchValue(ans)
+  }
+
   return (
     <>
      <BrowserRouter>
      <div className='mb-[65px]'>
-     <Navbar />
+     <Navbar getNavValue= {getNavValue} />
      </div>
  
         <Routes>
-              <Route path='/'  element = {<Home />}/>
+              <Route path='/'  element = {<Home searchValue={searchValue} getCartItem={getCartItem}/>}/>
               <Route path='/login'  element = {<Login/>}/>
               <Route path='/test'  element = {<Test/>}/>
               <Route path='/register'  element = {<Signup/>}/>

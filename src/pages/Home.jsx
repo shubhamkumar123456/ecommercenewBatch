@@ -61,65 +61,71 @@ import SliderComponent from '../components/SliderComponent';
 import CategorySliders from '../components/CategorySliders';
 
 
-const Home = () => {
+const Home = (props) => {
   // 'https://dummyjson.com/products'
 
+  
   const [allItems, setallItems] = useState([]);
   console.log(allItems)
-
+  
   async function getData(){
-
+    
     let res =await fetch('https://dummyjson.com/products?limit=0&skip=0')
     let data = await res.json();
-    console.log(data)
-    console.log(data.products)  //[{},{},{},..... 30]
+    // console.log(data)
+    // console.log(data.products)  //[{},{},{},..... 30]
     setallItems(data.products)
   }
-
- 
+  
+  
   useEffect(()=>{
     getData()
   },[])
-
-
-
+  
+  
+  
   let smartPhones = allItems.filter((ele)=>ele.category === 'smartphones' )     // []
   let laptops = allItems.filter((ele)=>ele.category === 'laptops' )     // []
   let watches = allItems.filter((ele)=>ele.category.includes('watch') )     // []
-  console.log(smartPhones)
-  console.log(laptops)
-  console.log(watches)
+  // console.log(smartPhones)
+  // console.log(laptops)
+  // console.log(watches)
+  
+  console.log(props.searchValue) //''
 
+  let filteredArr = allItems.filter((ele)=>ele.title.toLowerCase().includes(props.searchValue.toLowerCase())  || ele.category.toLowerCase().includes(props.searchValue.toLowerCase()));
+  console.log(filteredArr)  //
 
 
   return (
     <div>
-        <SliderComponent/>
-        <div className='my-4'>
+       {props.searchValue.length ==0 && <SliderComponent/>}
+       {props.searchValue.length ==0 && <div className='my-4'>
           <h1 className='bg-[rgb(0,0,0,0.5)] text-white text-2xl font-semibold p-3'>Smartphones</h1>
           <CategorySliders smartPhones = {smartPhones}/>
-        </div>
-        <div className='my-4'>
+        </div>}
+
+       {props.searchValue.length===0 && <div className='my-4'>
           <h1 className='bg-[rgb(0,0,0,0.5)] text-white text-2xl font-semibold p-3'>Laptops</h1>
         <CategorySliders smartPhones = {laptops}/>
 
-        </div>
+        </div>}
 
-        <div className='my-4'>
+      { props.searchValue.length===0 && <div className='my-4'>
           <h1 className='bg-[rgb(0,0,0,0.5)] text-white text-2xl font-semibold p-3'>Smartphones</h1>
         <CategorySliders smartPhones = {watches}/>
-        </div>
-      <div className='grid grid-cols-4 gap-2 w-[90%] m-auto'>
+        </div>}
+      <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 w-[90%] m-auto'>
     
    {/* bg-[rgb(255,255,255,0.5)] */}
       {
-        allItems.map((ele,i)=>{
-          return <div className='flex bg-[rgb(255,255,255,0.4)] backdrop-blur-sm text-black flex-col items-center gap-2 p-4 rounded-xl my-2'>
+        filteredArr.map((ele,i)=>{
+          return <div key={ele.id} className='flex bg-[rgb(255,255,255,0.4)] backdrop-blur-sm text-black flex-col items-center gap-2 p-4 rounded-xl my-2'>
                 <img src={ele.thumbnail} alt="" />
                 <p>{ele.price}</p>
                 <p>{ele.title}</p>
                 <Link state={ele} to={'/view'} onClick={()=>console.log(ele)} className='bg-[#3b723b] text-center cursor-pointer hover:bg-[#6f826f] text-white rounded-md w-full py-2'>View Details</Link>
-                <button className='bg-[#3b4072] cursor-pointer hover:bg-[#393a4b] text-white rounded-md w-full py-2'>Add to Cart</button>
+                <button onClick={()=>props.getCartItem(ele)} className='bg-[#3b4072] cursor-pointer hover:bg-[#393a4b] text-white rounded-md w-full py-2'>Add to Cart</button>
           </div>
         })
       }
